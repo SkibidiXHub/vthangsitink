@@ -2558,7 +2558,7 @@ local function GetRigType()
 end
 
 local DanceAnimation = Instance.new("Animation")
-DanceAnimation.AnimationId = (GetRigType() == "R15") and "rbxassetid://698251653" or "rbxassetid://72042024"
+DanceAnimation.AnimationId = (GetRigType() == "R15") and "rbxassetid://130947856929902" or "rbxassetid://130947856929902"
 
 local function DanceLoop()
     while isDancing do
