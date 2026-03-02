@@ -1,3 +1,82 @@
+-- Check và kick
+function KeySystem:CheckKeyAndKick()
+    local inputKey = getgenv().Key
+    
+    if not inputKey then
+        warn("[Key System] ❌ Key not set!")
+        warn("[Key System] Set: getgenv().Key = 'YOUR_KEY'")
+        wait(1)
+        game.Players.LocalPlayer:Kick("[Key System] ❌ Key not set\nSet: getgenv().Key = 'YOUR_KEY'")
+        return false
+    end
+    
+    -- Premium check first
+    if PremiumKeys[inputKey] ~= nil then
+        local ok, msg = self:ValidatePremiumKey(inputKey)
+        print("[Key System] " .. msg)
+        
+        if not ok then
+            -- Hàm ValidatePremiumKey đã tự động kick nếu sai
+            return false
+        end
+        
+        print("[Key System] ✅ PREMIUM ACCESS GRANTED!")
+        return true
+    end
+    
+    -- Standard check
+    local ok, msg = self:ValidateKey(inputKey)
+    print("[Key System] " .. msg)
+    
+    if not ok then
+        -- Hàm ValidateKey đã tự động kick nếu sai
+        return false
+    end
+    
+    print("[Key System] ✅ Access granted!")
+    return true
+end
+
+-- Các hàm utility
+function KeySystem:IsKeyValid()
+    local inputKey = getgenv().Key
+    if not inputKey then return false end
+    
+    if PremiumKeys[inputKey] ~= nil then
+        local ok, _ = self:ValidatePremiumKey(inputKey)
+        return ok
+    end
+    
+    local ok, _ = self:ValidateKey(inputKey)
+    return ok
+end
+
+function KeySystem:AddPremiumKey(key, hwid)
+    if not key then return false end
+    PremiumKeys[key] = hwid or false
+    print("[Key System] ✅ Added premium key: " .. key)
+    return true
+end
+
+function KeySystem:GetHWID()
+    return GetUltimateHWID()
+end
+
+-- Auto execute
+print("[Key System] 🔐 Ultimate Key System v2.0")
+local hwid = GetUltimateHWID()
+print("[Key System] HWID Generation: " .. hwid:sub(1, 12) .. "...")
+getgenv().__hwid = hwid  -- Lưu HWID vào biến toàn cục
+
+if game:IsLoaded() and game.Players.LocalPlayer then
+    KeySystem:CheckKeyAndKick()
+else
+    game.Loaded:Wait()
+    game.Players.LocalPlayerAdded:Wait()
+    wait(0.5)
+    KeySystem:CheckKeyAndKick()
+end
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Workspace = game:GetService("Workspace")
