@@ -2696,13 +2696,13 @@ Library = loadstring(game:HttpGet("https://pastefy.app/vgSGtrbP/raw"))()
 Window = Library:CreateWindow({
     Title = "Banana Cat Hub",
     Subtitle = "- Blox Fruit",
-    Image = "rbxassetid://96779554580445"
+    Image = "rbxassetid://130947856929902"
 })
 
 wait(1)
 
 Library:Notify({
-    Title = "Banana Cat Hub Ui Library",
+    Title = "Ui Library",
     Description = "The UI automatically hides once executed.\nPress the button at the bottom-left of the screen to show the GUI.",
     Duration = 3
 })
