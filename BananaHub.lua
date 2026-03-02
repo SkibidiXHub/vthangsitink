@@ -2769,7 +2769,7 @@ ReportIdeas:AddButton({
         
         -- Tạo embed data
         local data = {
-            ["username"] = "Tiro Hub BOT",
+            ["username"] = "Banana Cat Hub",
             ["avatar_url"] = "https://cdn.discordapp.com/attachments/...",
             ["embeds"] = {{
                 ["title"] = embedTitle,
@@ -2800,7 +2800,7 @@ ReportIdeas:AddButton({
                     }
                 },
                 ["footer"] = {
-                    ["text"] = "Tiro Hub • " .. time,
+                    ["text"] = "Banana Cat Hub • " .. time,
                     ["icon_url"] = "https://cdn.discordapp.com/attachments/..."
                 },
                 ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
